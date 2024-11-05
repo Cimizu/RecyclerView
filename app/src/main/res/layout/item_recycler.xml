@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+        <ImageView
+            android:id="@+id/gambarWayang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_launcher_foreground" />
+
+        <TextView
+            android:id="@+id/namaWayang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="124dp"
+            android:layout_marginTop="16dp"
+            android:text="namaWayang"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/karakterWayang"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:text="karakterWayang"
+            android:textColor="#009688"
+            app:layout_constraintStart_toStartOf="@+id/namaWayang"
+            app:layout_constraintTop_toBottomOf="@+id/namaWayang" />
+
+        <TextView
+            android:id="@+id/deskripsiWayang"
+            android:layout_width="285dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            android:text="deskripsiWayang"
+            android:textColor="#767272"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/karakterWayang" />
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
