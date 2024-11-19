@@ -15,10 +15,10 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var _nama: Array<String>
-    private lateinit var _karakter: Array<String>
-    private lateinit var _deskripsi: Array<String>
-    private lateinit var _gambar: Array<String>
+    private lateinit var _nama: MutableList<String>
+    private lateinit var _karakter: MutableList<String>
+    private lateinit var _deskripsi: MutableList<String>
+    private lateinit var _gambar: MutableList<String>
     private lateinit var _rvWayang: RecyclerView
 
     private var arWayag = arrayListOf<wayang>()
@@ -41,13 +41,14 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun SiapkanData() {
-        _nama = resources.getStringArray(R.array.namaWayang)
-        _deskripsi = resources.getStringArray(R.array.deskripsiWayang)
-        _karakter = resources.getStringArray(R.array.karakterUtamaWayang)
-        _gambar = resources.getStringArray(R.array.gambarWayang)
+        _nama = resources.getStringArray(R.array.namaWayang).toMutableList()
+        _deskripsi = resources.getStringArray(R.array.deskripsiWayang).toMutableList()
+        _karakter = resources.getStringArray(R.array.karakterUtamaWayang).toMutableList()
+        _gambar = resources.getStringArray(R.array.gambarWayang).toMutableList()
     }
 
     fun TambahData() {
+        arWayag.clear()
         for (posititon in _nama.indices) {
             val data = wayang(
                 _gambar[posititon],
@@ -77,6 +78,29 @@ class MainActivity : AppCompatActivity() {
                 startActivity(intent)
 
             }
+            override fun delData(pos: Int) {
+                AlertDialog.Builder(this@MainActivity)
+                    .setTitle("HAPUS DATA")
+                    .setMessage("Apakah Benar Data " + _nama[pos] + " akan dihapus ?")
+                    .setPositiveButton(
+                        "HAPUS", DialogInterface.OnClickListener{
+                                dialog, which -> _gambar.removeAt(pos)
+                            _nama.removeAt(pos)
+                            _deskripsi.removeAt(pos)
+                            _karakter.removeAt(pos)
+                            TambahData()
+                            TampilkanData()
+                        }
+                    )
+                    .setNegativeButton(
+                        "BATAL", DialogInterface.OnClickListener{
+                                dialog, which ->
+                            Toast.makeText(this@MainActivity, "Data Batal Dihapus", Toast.LENGTH_LONG)
+                                .show()
+                        }
+                    ).show()
+            }
+
         })
 
     }
