@@ -15,11 +15,11 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var _nama : Array<String>
-    private lateinit var _karakter : Array<String>
-    private lateinit var _deskripsi : Array<String>
-    private lateinit var _gambar : Array<String>
-    private lateinit var _rvWayang : RecyclerView
+    private lateinit var _nama: Array<String>
+    private lateinit var _karakter: Array<String>
+    private lateinit var _deskripsi: Array<String>
+    private lateinit var _gambar: Array<String>
+    private lateinit var _rvWayang: RecyclerView
 
     private var arWayag = arrayListOf<wayang>()
 
@@ -40,15 +40,15 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun SiapkanData(){
+    fun SiapkanData() {
         _nama = resources.getStringArray(R.array.namaWayang)
         _deskripsi = resources.getStringArray(R.array.deskripsiWayang)
         _karakter = resources.getStringArray(R.array.karakterUtamaWayang)
         _gambar = resources.getStringArray(R.array.gambarWayang)
     }
 
-    fun TambahData(){
-        for (posititon in _nama.indices){
+    fun TambahData() {
+        for (posititon in _nama.indices) {
             val data = wayang(
                 _gambar[posititon],
                 _nama[posititon],
@@ -58,14 +58,26 @@ class MainActivity : AppCompatActivity() {
             arWayag.add(data)
         }
     }
+
     fun TampilkanData() {
         _rvWayang.layoutManager = LinearLayoutManager(this)
 //        _rvWayang.layoutManager = GridLayoutManager(this,2)
 //        _rvWayang.layoutManager = StaggeredGridLayoutManager(2,LinearLayoutManager.VERTICAL) //mengikuti panjang deksripsi jadi semakin turun kebawah
 //        _rvWayang.adapter = adapterRecView(arWayag)
 
+        // adapter wayang
         val adapterWayang = adapterRecView(arWayag)
         _rvWayang.adapter = adapterWayang
+
+        adapterWayang.setOnItemClickCallback(object : adapterRecView.OnItemClickCallback {
+            override fun onItemClicked(data: wayang) {
+                Toast.makeText(this@MainActivity, data.nama, Toast.LENGTH_LONG).show()
+                val intent = Intent(this@MainActivity,detWayang::class.java)
+                intent.putExtra("kirimData", data)
+                startActivity(intent)
+
+            }
+        })
 
     }
 }

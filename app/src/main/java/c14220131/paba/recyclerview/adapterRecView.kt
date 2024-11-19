@@ -15,7 +15,7 @@ class adapterRecView (private val listWayang: ArrayList<wayang>) : RecyclerView.
 
     interface OnItemClickCallback {
         fun onItemClicked(data:wayang)
-        fun delData(pos :Int)
+//        fun delData(pos :Int)
     }
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback){
         this.onItemClickCallback = onItemClickCallback
@@ -51,7 +51,8 @@ class adapterRecView (private val listWayang: ArrayList<wayang>) : RecyclerView.
         Picasso.get().load(wayang.foto).into(holder._gambarWayang)
 
         holder._gambarWayang.setOnClickListener{
-            Toast.makeText(holder.itemView.context,wayang.nama,Toast.LENGTH_LONG).show()
+//            Toast.makeText(holder.itemView.context,wayang.nama,Toast.LENGTH_LONG).show()
+            onItemClickCallback.onItemClicked(listWayang[position])
         }
 
 
