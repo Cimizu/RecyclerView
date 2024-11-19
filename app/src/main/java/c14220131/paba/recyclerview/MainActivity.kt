@@ -1,7 +1,11 @@
 package c14220131.paba.recyclerview
 
+import android.content.DialogInterface
+import android.content.Intent
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
@@ -54,10 +58,14 @@ class MainActivity : AppCompatActivity() {
             arWayag.add(data)
         }
     }
-    fun TampilkanData(){
-//        _rvWayang.layoutManager = LinearLayoutManager(this)
+    fun TampilkanData() {
+        _rvWayang.layoutManager = LinearLayoutManager(this)
 //        _rvWayang.layoutManager = GridLayoutManager(this,2)
-        _rvWayang.layoutManager = StaggeredGridLayoutManager(2,LinearLayoutManager.VERTICAL) //mengikuti panjang deksripsi jadi semakin turun kebawah
-        _rvWayang.adapter = adapterRecView(arWayag)
+//        _rvWayang.layoutManager = StaggeredGridLayoutManager(2,LinearLayoutManager.VERTICAL) //mengikuti panjang deksripsi jadi semakin turun kebawah
+//        _rvWayang.adapter = adapterRecView(arWayag)
+
+        val adapterWayang = adapterRecView(arWayag)
+        _rvWayang.adapter = adapterWayang
+
     }
 }
